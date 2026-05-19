@@ -1,0 +1,31 @@
+{
+  "updated_at": "2026-05-19T00:00:00Z",
+  "apps": [
+    {
+      "name": "getpod-manager",
+      "description": "VM resize, SSH keys, and usage metrics",
+      "repo": "https://github.com/0xMaxMa/app-getpod-manager",
+      "author": "0xMaxMa",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "commit": "21d33661d6a6104be9206dd72bbf18411ead4d33",
+          "approved_at": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "name": "agent-note",
+      "description": "Personal notes app with AI agent",
+      "repo": "https://github.com/0xMaxMa/app-agent-note",
+      "author": "0xMaxMa",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "commit": "293f3079fcc1d80d0b96ecd109c695516ba2470c",
+          "approved_at": "2026-05-19"
+        }
+      ]
+    }
+  ]
+}
