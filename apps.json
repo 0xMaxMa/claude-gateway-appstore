@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-19T13:44:00Z",
+  "updated_at": "2026-05-24T16:48:00Z",
   "apps": [
     {
       "name": "getpod-manager",
@@ -9,7 +9,7 @@
       "versions": [
         {
           "version": "1.0.0",
-          "commit": "00d6ba1b4085bd9c0d8bb9001d7ec2b1b4675f8c",
+          "commit": "1c19e98bb986ca643053b3b5d29c40eb12d9431e",
           "approved_at": "2026-05-19"
         }
       ]
@@ -22,7 +22,7 @@
       "versions": [
         {
           "version": "1.0.0",
-          "commit": "f9e0d29ce19e153e662f48fbb0b6beb2d830811b",
+          "commit": "41c9dcb972a267321a93d50cc733beb50fc23151",
           "approved_at": "2026-05-19"
         }
       ]
