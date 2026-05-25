@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-25T06:41:00Z",
+  "updated_at": "2026-05-25T07:50:00Z",
   "apps": [
     {
       "name": "getpod-manager",
@@ -9,13 +9,8 @@
       "versions": [
         {
           "version": "1.0.0",
-          "commit": "1c19e98bb986ca643053b3b5d29c40eb12d9431e",
-          "approved_at": "2026-05-19"
-        },
-        {
-          "version": "1.1.0",
           "commit": "93b7df5ce2078387fe734e53000119b7d8eb01a2",
-          "approved_at": "2026-05-25"
+          "approved_at": "2026-05-19"
         }
       ]
     },
