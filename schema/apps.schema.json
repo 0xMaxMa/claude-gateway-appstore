@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/0xMaxMa/claude-gateway-appstore/schema/apps.schema.json",
+  "title": "claude-gateway App Store registry",
+  "description": "Schema for apps.json — the central catalog of the getpod App Store. Backward-compatible with the gateway registry parser (name, description, repo, versions[]).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["updated_at", "categories", "apps"],
+  "properties": {
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of the last catalog change."
+    },
+    "categories": {
+      "type": "array",
+      "description": "Single source of truth for allowed app categories. Every app.category must be a member of this list. Required so the CI enum check can never be silently disabled by removing it.",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "apps": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/app" }
+    }
+  },
+  "definitions": {
+    "app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "description", "repo", "author", "versions"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Globally unique RFC1123-ish slug. Also the image folder name (apps/<name>/).",
+          "pattern": "^[a-z0-9]([a-z0-9-]{0,38}[a-z0-9])?$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tagline": {
+          "type": "string",
+          "description": "Short one-liner shown under the name.",
+          "maxLength": 80
+        },
+        "repo": {
+          "type": "string",
+          "format": "uri",
+          "description": "GitHub repository URL. Must include an owner and repo path (not a bare host).",
+          "pattern": "^https://github\\.com/[^/]+/[^/]+"
+        },
+        "author": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "description": "Required for newly published apps. Must be a member of the top-level categories[] enum (enforced by the CI script).",
+          "minLength": 1
+        },
+        "icon": {
+          "type": "string",
+          "description": "Repo-relative path to the app icon, e.g. apps/<name>/icon.png.",
+          "pattern": "^apps/[a-z0-9]([a-z0-9-]{0,38}[a-z0-9])?/icon\\.(png|webp)$"
+        },
+        "screenshots": {
+          "type": "array",
+          "description": "Repo-relative paths to screenshots (0-6).",
+          "maxItems": 6,
+          "items": {
+            "type": "string",
+            "pattern": "^apps/[a-z0-9]([a-z0-9-]{0,38}[a-z0-9])?/screenshots/[^/]+\\.(png|webp)$"
+          }
+        },
+        "versions": {
+          "type": "array",
+          "description": "Append-only version history. New versions are added to the end; old ones are kept.",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/version" }
+        }
+      }
+    },
+    "version": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "commit", "approved_at"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Semantic version (MAJOR.MINOR.PATCH, optional pre-release/build).",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$"
+        },
+        "commit": {
+          "type": "string",
+          "description": "Full 40-char git commit hash pinned at approval time.",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "approved_at": {
+          "type": "string",
+          "description": "Date the admin approved this version (YYYY-MM-DD).",
+          "format": "date"
+        }
+      }
+    }
+  }
+}
