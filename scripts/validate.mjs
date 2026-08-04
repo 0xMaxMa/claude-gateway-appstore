@@ -20,6 +20,11 @@ const warn = (m) => warnings.push(m);
 const ICON_MAX = 512 * 1024; // 512 KB
 const SHOT_MAX = 1024 * 1024; // 1 MB
 
+// Image dimension guidance (px). Violations warn, never fail — they are quality
+// hints, not policy.
+const ICON_MIN = 128; // icons should render crisply at catalog size
+const SHOT_MIN_W = 320; // screenshots narrower than this look broken in the UI
+
 function readJson(p) {
   return JSON.parse(readFileSync(join(ROOT, p), 'utf-8'));
 }
@@ -92,7 +97,51 @@ function checkImage(appName, relPath, maxBytes, kind) {
   const buf = readFileSync(abs);
   if (!isPng(buf) && !isWebp(buf)) {
     err(`"${appName}": ${kind} "${relPath}" is not a valid PNG or WebP (magic bytes)`);
+    return;
   }
+
+  // Dimension hints (warn-only). Best-effort — if we can't read the size we stay quiet.
+  const dim = imageSize(buf);
+  if (!dim) return;
+  if (kind === 'icon') {
+    if (dim.w < ICON_MIN || dim.h < ICON_MIN) {
+      warn(`"${appName}": icon "${relPath}" is ${dim.w}×${dim.h}px, below the recommended ${ICON_MIN}×${ICON_MIN}`);
+    }
+    if (dim.w !== dim.h) {
+      warn(`"${appName}": icon "${relPath}" is ${dim.w}×${dim.h}px, not square — it may be cropped in the catalog`);
+    }
+  } else if (kind === 'screenshot' && dim.w < SHOT_MIN_W) {
+    warn(`"${appName}": screenshot "${relPath}" is ${dim.w}×${dim.h}px, narrower than the recommended ${SHOT_MIN_W}px`);
+  }
+}
+
+// Read pixel dimensions from a PNG or WebP buffer. Returns {w,h} or null if the
+// format/variant isn't understood (caller treats null as "skip the check").
+function imageSize(b) {
+  if (isPng(b)) {
+    // IHDR is the first chunk: width/height are big-endian uint32 at bytes 16/20.
+    if (b.length < 24) return null;
+    return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) };
+  }
+  if (isWebp(b)) {
+    const fourcc = b.toString('ascii', 12, 16);
+    if (fourcc === 'VP8X' && b.length >= 30) {
+      // Extended: 24-bit little-endian canvas (width-1, height-1) at bytes 24/27.
+      const w = 1 + (b[24] | (b[25] << 8) | (b[26] << 16));
+      const h = 1 + (b[27] | (b[28] << 8) | (b[29] << 16));
+      return { w, h };
+    }
+    if (fourcc === 'VP8 ' && b.length >= 30) {
+      // Lossy: 14-bit little-endian width/height after the 0x9d012a start code.
+      return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+    }
+    if (fourcc === 'VP8L' && b.length >= 25) {
+      // Lossless: 14-bit width-1/height-1 packed after the 0x2f signature byte.
+      const bits = b[21] | (b[22] << 8) | (b[23] << 16) | (b[24] << 24);
+      return { w: 1 + (bits & 0x3fff), h: 1 + ((bits >> 14) & 0x3fff) };
+    }
+  }
+  return null;
 }
 
 function isPng(b) {
