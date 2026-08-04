@@ -1,0 +1,15 @@
+{
+  "name": "claude-gateway-appstore",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Central catalog (registry) for the getpod App Store.",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

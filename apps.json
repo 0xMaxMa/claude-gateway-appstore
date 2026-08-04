@@ -1,11 +1,24 @@
 {
-  "updated_at": "2026-06-02T07:54:00Z",
+  "updated_at": "2026-08-04T00:00:00Z",
+  "categories": [
+    "Productivity",
+    "Developer Tools",
+    "AI & Agents",
+    "Data",
+    "Communication",
+    "Utilities",
+    "Finance",
+    "Entertainment"
+  ],
   "apps": [
     {
       "name": "getpod-manager",
       "description": "VM resize, SSH keys, and usage metrics",
+      "tagline": "Manage your pod from inside your pod",
       "repo": "https://github.com/0xMaxMa/app-getpod-manager",
       "author": "0xMaxMa",
+      "category": "Developer Tools",
+      "icon": "apps/getpod-manager/icon.png",
       "versions": [
         {
           "version": "1.0.3",
@@ -17,8 +30,11 @@
     {
       "name": "agent-note",
       "description": "Personal notes app with AI agent",
+      "tagline": "Take notes with an AI agent at your side",
       "repo": "https://github.com/0xMaxMa/app-agent-note",
       "author": "0xMaxMa",
+      "category": "AI & Agents",
+      "icon": "apps/agent-note/icon.png",
       "versions": [
         {
           "version": "1.0.0",
