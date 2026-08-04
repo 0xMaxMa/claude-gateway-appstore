@@ -48,6 +48,18 @@ if (!validate(data)) {
   }
 }
 
+// Fail fast on a schema-invalid document: stop BEFORE the file/image checks.
+// Those readFileSync a schema-controlled `icon`/`screenshots` path, and on an
+// already-invalid PR that path is untrusted — a crafted value (e.g. a device
+// file like /dev/zero, or a huge file) could hang or OOM the CI runner. A
+// schema-valid document only reaches the file checks with pattern-constrained
+// relative paths, so those reads are safe.
+if (errors.length) {
+  for (const e of errors) console.error(`❌ ${e}`);
+  console.error(`\n${errors.length} error(s) found.`);
+  process.exit(1);
+}
+
 const apps = Array.isArray(data.apps) ? data.apps : [];
 const categories = Array.isArray(data.categories) ? data.categories : [];
 
