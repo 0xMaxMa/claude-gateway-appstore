@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-05T05:40:00Z",
+  "updated_at": "2026-08-05T06:15:00Z",
   "categories": [
     "Productivity",
     "Developer Tools",
@@ -61,6 +61,22 @@
         {
           "version": "0.1.0",
           "commit": "d98fd65e964d48a4a9c8f268f4baf86fc388bc29",
+          "approved_at": "2026-08-05"
+        }
+      ]
+    },
+    {
+      "name": "cc-monitor",
+      "description": "Claude Code telemetry dashboard",
+      "tagline": "See your Claude Code usage at a glance",
+      "repo": "https://github.com/0xKirin/cc-monitor-appstore",
+      "author": "0xKirin",
+      "category": "Developer Tools",
+      "icon": "apps/cc-monitor/icon.png",
+      "versions": [
+        {
+          "version": "1.1.0",
+          "commit": "9d80c9c7f1cdba6dd4f1577631529d780a7b1865",
           "approved_at": "2026-08-05"
         }
       ]
