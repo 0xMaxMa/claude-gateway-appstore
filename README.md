@@ -45,7 +45,8 @@ Full contract: [`schema/apps.schema.json`](./schema/apps.schema.json).
 {
   "updated_at": "2026-08-04T00:00:00Z",
   "categories": ["Productivity", "Developer Tools", "AI & Agents", "Data",
-                 "Communication", "Utilities", "Finance", "Entertainment"],
+                 "Communication", "Utilities", "Finance", "Entertainment",
+                 "Kids & Family"],
   "apps": [
     {
       "name": "getpod-manager",
@@ -117,6 +118,7 @@ apps/
 | **Utilities** | Small general-purpose helpers |
 | **Finance** | Budgeting, invoicing, payments |
 | **Entertainment** | Media, games, fun |
+| **Kids & Family** | Apps a household uses together — chores, allowance, routines, kids' learning |
 
 To add a category, edit the top-level `categories[]` array.
 
