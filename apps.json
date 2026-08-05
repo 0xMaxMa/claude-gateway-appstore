@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-05T00:00:00Z",
+  "updated_at": "2026-08-05T05:40:00Z",
   "categories": [
     "Productivity",
     "Developer Tools",
@@ -8,7 +8,8 @@
     "Communication",
     "Utilities",
     "Finance",
-    "Entertainment"
+    "Entertainment",
+    "Kids & Family"
   ],
   "apps": [
     {
@@ -44,6 +45,22 @@
         {
           "version": "1.0.2",
           "commit": "071f4da05e98be52509e8287ea305219f90ad6ef",
+          "approved_at": "2026-08-05"
+        }
+      ]
+    },
+    {
+      "name": "habit-hero",
+      "description": "Chores, XP, streaks and rewards — kids submit, parents approve",
+      "tagline": "A cozy habit and chore tracker for families",
+      "repo": "https://github.com/0xMaxMa/app-habit-hero",
+      "author": "0xMaxMa",
+      "category": "Kids & Family",
+      "icon": "apps/habit-hero/icon.png",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "commit": "d98fd65e964d48a4a9c8f268f4baf86fc388bc29",
           "approved_at": "2026-08-05"
         }
       ]
