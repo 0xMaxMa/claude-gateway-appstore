@@ -42,11 +42,6 @@
           "approved_at": "2026-05-19"
         },
         {
-          "version": "1.0.1",
-          "commit": "028430c1a4cc1b85d1bf0539e95876e1bfceb9a9",
-          "approved_at": "2026-08-05"
-        },
-        {
           "version": "1.0.2",
           "commit": "071f4da05e98be52509e8287ea305219f90ad6ef",
           "approved_at": "2026-08-05"
