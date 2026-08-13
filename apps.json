@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T03:55:00Z",
+  "updated_at": "2026-08-13T15:00:00Z",
   "categories": [
     "Productivity",
     "Developer Tools",
@@ -62,6 +62,11 @@
           "version": "0.1.0",
           "commit": "d98fd65e964d48a4a9c8f268f4baf86fc388bc29",
           "approved_at": "2026-08-05"
+        },
+        {
+          "version": "0.1.1",
+          "commit": "c9308a7ed05b55a68d72b95ad1019858976e9dcb",
+          "approved_at": "2026-08-13"
         }
       ]
     },
