@@ -72,6 +72,11 @@
           "version": "0.2.2",
           "commit": "1a4e78de42fcd9817ee64772a4814443754d32b4",
           "approved_at": "2026-09-20"
+        },
+        {
+          "version": "0.2.3",
+          "commit": "99e35f27c8a0e88036eaa66e995ed61ea45dc22a",
+          "approved_at": "2026-09-21"
         }
       ]
     },
