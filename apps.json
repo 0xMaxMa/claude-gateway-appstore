@@ -25,6 +25,11 @@
           "version": "1.0.3",
           "commit": "7a706018f167f088f71fe22a418a8d0a0c25538d",
           "approved_at": "2026-06-02"
+        },
+        {
+          "version": "1.0.4",
+          "commit": "8645a6c605c816498ce72eed4fc98bcd4a2bc1fb",
+          "approved_at": "2026-10-05"
         }
       ]
     },
